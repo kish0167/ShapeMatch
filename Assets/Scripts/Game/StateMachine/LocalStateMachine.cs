@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.StateMachine.States;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Game.StateMachine
@@ -28,6 +29,11 @@ namespace Game.StateMachine
             _states.Add(solvingState);
             _states.Add(winState);
             _states.Add(reGeneratingFieldState);
+
+            foreach (GameState state in _states)
+            {
+                state.StateMachine = this;
+            }
         }
 
         #endregion
@@ -66,7 +72,7 @@ namespace Game.StateMachine
                 return;
             }
 
-            Debug.LogError($"Sate {nameof(T)} not present in state list");
+            this.Error($"Sate {nameof(T)} not present in state list");
         }
 
         #endregion

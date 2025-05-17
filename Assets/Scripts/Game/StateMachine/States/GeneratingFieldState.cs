@@ -26,11 +26,21 @@ namespace Game.StateMachine.States
         public override void Enter()
         {
             _coinSpawner.StartSpawning();
+            _coinSpawner.OnSpawningEnded += SpawningEndedCallback;
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            _coinSpawner.OnSpawningEnded -= SpawningEndedCallback;
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void SpawningEndedCallback()
+        {
+            StateMachine.TransitionTo<SolvingState>();
         }
 
         #endregion

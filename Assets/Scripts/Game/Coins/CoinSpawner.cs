@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using ModestTree.Util;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Game.Coins
 {
@@ -27,6 +30,7 @@ namespace Game.Coins
         public bool IsSpawning => _isSpawning;
 
         #endregion
+        public event Action OnSpawningEnded; 
 
         #region Setup/Teardown
 
@@ -111,6 +115,8 @@ namespace Game.Coins
             }
 
             _isSpawning = false;
+            
+            OnSpawningEnded?.Invoke();
         }
 
         #endregion

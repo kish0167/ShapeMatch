@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2998907272425015867}
-  - component: {fileID: 9094893983281068631}
   - component: {fileID: 967628715757828740}
   - component: {fileID: 7312436679863970304}
+  - component: {fileID: 9094893983281068631}
+  - component: {fileID: -5933718468175381460}
   m_Layer: 0
   m_Name: HeartBase
   m_TagString: Untagged
@@ -37,21 +38,6 @@ Transform:
   - {fileID: 5973499067725349020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9094893983281068631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379941990552195149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8c38511e684c188b3535124e1b6dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _base: {fileID: 4726025076180558576}
-  _border: {fileID: 1431219532996911015}
-  _letter: {fileID: 641434703729443165}
 --- !u!50 &967628715757828740
 Rigidbody2D:
   serializedVersion: 4
@@ -136,6 +122,34 @@ PolygonCollider2D:
       - {x: 0.36440665, y: 0.30570126}
       - {x: 0.20659184, y: 0.39576572}
   m_UseDelaunayMesh: 0
+--- !u!114 &9094893983281068631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379941990552195149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8c38511e684c188b3535124e1b6dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _base: {fileID: 4726025076180558576}
+  _border: {fileID: 1431219532996911015}
+  _letter: {fileID: 641434703729443165}
+  _clickDetector: {fileID: -5933718468175381460}
+--- !u!114 &-5933718468175381460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379941990552195149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e941f879e249f7a81ba4c2b907f38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5519661118208472688
 GameObject:
   m_ObjectHideFlags: 0
