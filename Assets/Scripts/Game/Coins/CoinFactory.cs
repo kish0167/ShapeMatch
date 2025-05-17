@@ -6,10 +6,15 @@ namespace Game.Coins
 {
     public class CoinFactory
     {
-        public CoinBase SpawnCoin(Vector3 position,
-            CoinBase basePrefab, Color color, Sprite letter)
+        public Coin SpawnCoin(Vector3 position,
+            Coin prefab, Color color, Sprite letter)
         {
-            return LeanPool.Spawn(basePrefab, position, Quaternion.identity);
+            Coin coin = LeanPool.Spawn(prefab, position, Quaternion.identity);
+            coin.Base.color = color;
+            coin.Letter.sprite = letter;
+            return coin;
         }
+        
+        
     }
 }

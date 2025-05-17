@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Coins
 {
-    public class CoinBase : MonoBehaviour
+    public class Coin : MonoBehaviour
     {
         #region Variables
 
