@@ -1,3 +1,4 @@
+using Game.ActionBar;
 using Game.Coins;
 using Game.StateMachine;
 using Game.StateMachine.States;
@@ -10,14 +11,20 @@ namespace Installers
     public class SceneInstaller : MonoInstaller
     {
         [SerializeField] private CoinSpawner _coinSpawner;
+        [SerializeField] private ActionBar _actionBar;
         
         #region Public methods
 
         public override void InstallBindings()
         {
+            // Action bar
+            Container.Bind<ActionBar>().FromInstance(_actionBar).AsSingle().NonLazy();
+            Container.Bind<ActionBarService>().FromNew().AsSingle().NonLazy();
+            
             // Coins
             Container.Bind<CoinSpawner>().FromInstance(_coinSpawner).AsSingle().NonLazy();
             Container.Bind<CoinFactory>().FromNew().AsSingle().NonLazy();
+            Container.Bind<CoinsService>().FromNew().AsSingle().NonLazy();
             
             // States
             Container.Bind<LocalStateMachine>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
