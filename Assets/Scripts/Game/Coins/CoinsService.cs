@@ -43,7 +43,7 @@ namespace Game.Coins
             int count = _activeCoins.Count;
             for (int i = 0; i < count; i++)
             {
-                _factory.DeSpawnCoin(_activeCoins[0]);
+                _factory.DespawnCoin(_activeCoins[0]);
             }
         }
 
@@ -63,11 +63,16 @@ namespace Game.Coins
                 return;
             }
 
-            _factory.DeSpawnCoin(coin);
+            _factory.DespawnCoinSoft(coin);
         }
 
         private void CoinDeSpawnedCallback(Coin coin)
         {
+            if (!_activeCoins.Contains(coin))
+            {
+                return;
+            }
+            
             _activeCoins.Remove(coin);
             coin.ClickDetector.OnClicked -= CoinClickedCallback;
         }

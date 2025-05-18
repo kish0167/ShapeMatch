@@ -13,6 +13,7 @@ namespace Game.ActionBar
         private ActionBar _actionBar;
 
         private CoinsService _coinsService;
+        private CoinFactory _factory;
 
         #endregion
 
@@ -26,10 +27,11 @@ namespace Game.ActionBar
         #region Setup/Teardown
 
         [Inject]
-        private void Construct(ActionBar actionBar, CoinsService coinsService)
+        private void Construct(ActionBar actionBar, CoinsService coinsService, CoinFactory factory)
         {
             _coinsService = coinsService;
             _actionBar = actionBar;
+            _factory = factory;
             UpdateBar();
         }
 
@@ -46,7 +48,7 @@ namespace Game.ActionBar
                 coins.Add(coin);
                 coins.Add(coin);
             }
-            
+
             return coins;
         }
 
@@ -61,7 +63,11 @@ namespace Game.ActionBar
 
             if (CheckForTriplet())
             {
-                _coins.RemoveRange(_coins.Count - 3, 3);
+                int index = _coins.Count - 3;
+                _factory.DespawnCoin(_coins[index]);
+                _factory.DespawnCoin(_coins[index + 1]);
+                _factory.DespawnCoin(_coins[index + 2]);
+                _coins.RemoveRange(index, 3);
             }
             else if (GameOverCondition())
             {
@@ -113,7 +119,8 @@ namespace Game.ActionBar
 
         private bool GameOverCondition()
         {
-            return _coins.Count == _actionBar.Capacity;
+            return _coins.Count == _actionBar.Capacity ||
+                   (_coinsService.ActiveCoinsCount == 0 && _coins.Count != 0);
         }
 
         private void UpdateBar()

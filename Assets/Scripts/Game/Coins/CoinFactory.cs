@@ -16,7 +16,7 @@ namespace Game.Coins
 
         #region Public methods
 
-        public void DeSpawnCoin(Coin coin)
+        public void DespawnCoin(Coin coin)
         {
             LeanPool.Despawn(coin);
             OnCoinDeSpawned?.Invoke(coin);
@@ -30,6 +30,12 @@ namespace Game.Coins
             coin.Letter.sprite = letter;
             OnCoinSpawned?.Invoke(coin);
             return coin;
+        }
+
+        public void DespawnCoinSoft(Coin coin)
+        {
+            coin.gameObject.SetActive(false);
+            OnCoinDeSpawned?.Invoke(coin);
         }
 
         #endregion
