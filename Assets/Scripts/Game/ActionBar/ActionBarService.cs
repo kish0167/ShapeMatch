@@ -120,7 +120,7 @@ namespace Game.ActionBar
         private bool GameOverCondition()
         {
             return _coins.Count == _actionBar.Capacity ||
-                   (_coinsService.ActiveCoinsCount == 0 && _coins.Count != 0);
+                   (_coinsService.ActiveCoinsCount == 1 && _coins.Count != 0);
         }
 
         private void UpdateBar()
@@ -130,7 +130,7 @@ namespace Game.ActionBar
 
         private bool WinCondition()
         {
-            return _coinsService.ActiveCoinsCount == 1 && _coins.Count == 0;
+            return _coinsService.ActiveCoinsCount == 0 && _coins.Count == 0;
         }
 
         #endregion
