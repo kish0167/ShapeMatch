@@ -12,19 +12,23 @@ namespace Game.ActionBar
         private readonly List<Coin> _coins = new();
         private ActionBar _actionBar;
 
+        private CoinsService _coinsService;
+
         #endregion
 
         #region Events
 
-        public event Action OnActionBarFull;
+        public event Action OnGameOverConditionMet;
+        public event Action OnWinConditionMet;
 
         #endregion
 
         #region Setup/Teardown
 
         [Inject]
-        private void Construct(ActionBar actionBar)
+        private void Construct(ActionBar actionBar, CoinsService coinsService)
         {
+            _coinsService = coinsService;
             _actionBar = actionBar;
             UpdateBar();
         }
@@ -32,6 +36,19 @@ namespace Game.ActionBar
         #endregion
 
         #region Public methods
+
+        public List<Coin> CreateMissingCoinsTypes()
+        {
+            List<Coin> coins = new();
+
+            foreach (Coin coin in _coins)
+            {
+                coins.Add(coin);
+                coins.Add(coin);
+            }
+            
+            return coins;
+        }
 
         public bool TryPlaceInActionBar(Coin coin)
         {
@@ -41,18 +58,22 @@ namespace Game.ActionBar
             }
 
             _coins.Add(coin);
-            UpdateBar();
 
             if (CheckForTriplet())
             {
                 _coins.RemoveRange(_coins.Count - 3, 3);
-                UpdateBar();
             }
             else if (GameOverCondition())
             {
-                OnActionBarFull?.Invoke();
+                OnGameOverConditionMet?.Invoke();
             }
 
+            if (WinCondition())
+            {
+                OnWinConditionMet?.Invoke();
+            }
+
+            UpdateBar();
             return true;
         }
 
@@ -98,6 +119,11 @@ namespace Game.ActionBar
         private void UpdateBar()
         {
             _actionBar.Set(_coins);
+        }
+
+        private bool WinCondition()
+        {
+            return _coinsService.ActiveCoinsCount == 1 && _coins.Count == 0;
         }
 
         #endregion

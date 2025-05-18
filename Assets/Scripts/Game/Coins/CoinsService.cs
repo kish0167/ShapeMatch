@@ -8,10 +8,16 @@ namespace Game.Coins
     {
         #region Variables
 
-        private ActionBarService _actionBarService;
-
         private readonly List<Coin> _activeCoins = new();
+
+        private ActionBarService _actionBarService;
         private CoinFactory _factory;
+
+        #endregion
+
+        #region Properties
+
+        public int ActiveCoinsCount => _activeCoins.Count;
 
         public bool SolvingEnabled { get; set; } = false;
 
@@ -30,6 +36,19 @@ namespace Game.Coins
 
         #endregion
 
+        #region Public methods
+
+        public void DestroyActiveCoins()
+        {
+            int count = _activeCoins.Count;
+            for (int i = 0; i < count; i++)
+            {
+                _factory.DeSpawnCoin(_activeCoins[0]);
+            }
+        }
+
+        #endregion
+
         #region Private methods
 
         private void CoinClickedCallback(Coin coin)
@@ -38,7 +57,7 @@ namespace Game.Coins
             {
                 return;
             }
-            
+
             if (!_actionBarService.TryPlaceInActionBar(coin))
             {
                 return;

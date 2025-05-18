@@ -15,12 +15,17 @@ namespace Installers
         [SerializeField] private ActionBar _actionBar;
         [SerializeField] private WinScreen _winScreen;
         [SerializeField] private GameOverScreen _gameOverScreen;
+        [SerializeField] private RegenerateButton _regenerateButton;
+        
         
         
         #region Public methods
 
         public override void InstallBindings()
         {
+            // Buttons
+            Container.Bind<RegenerateButton>().FromInstance(_regenerateButton).AsSingle().NonLazy();
+            
             // Screens
             Container.Bind<GameOverScreen>().FromInstance(_gameOverScreen).AsSingle().NonLazy();
             Container.Bind<WinScreen>().FromInstance(_winScreen).AsSingle().NonLazy();
@@ -33,6 +38,7 @@ namespace Installers
             Container.Bind<CoinSpawner>().FromInstance(_coinSpawner).AsSingle().NonLazy();
             Container.Bind<CoinFactory>().FromNew().AsSingle().NonLazy();
             Container.Bind<CoinsService>().FromNew().AsSingle().NonLazy();
+            Container.Bind<RegenerationService>().FromNew().AsSingle().NonLazy();
             
             // States
             Container.Bind<LocalStateMachine>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();

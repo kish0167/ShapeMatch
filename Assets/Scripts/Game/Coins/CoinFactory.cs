@@ -6,11 +6,21 @@ namespace Game.Coins
 {
     public class CoinFactory
     {
+        #region Events
+
+        public event Action<Coin> OnCoinDeSpawned;
 
         public event Action<Coin> OnCoinSpawned;
-        public event Action<Coin> OnCoinDeSpawned;
-        
+
+        #endregion
+
         #region Public methods
+
+        public void DeSpawnCoin(Coin coin)
+        {
+            LeanPool.Despawn(coin);
+            OnCoinDeSpawned?.Invoke(coin);
+        }
 
         public Coin SpawnCoin(Vector3 position,
             Coin prefab, Color color, Sprite letter)
@@ -20,12 +30,6 @@ namespace Game.Coins
             coin.Letter.sprite = letter;
             OnCoinSpawned?.Invoke(coin);
             return coin;
-        }
-
-        public void DeSpawnCoin(Coin coin)
-        {
-            LeanPool.Despawn(coin);
-            OnCoinDeSpawned?.Invoke(coin);
         }
 
         #endregion
