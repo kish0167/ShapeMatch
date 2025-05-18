@@ -10,7 +10,7 @@ namespace Game.Coins
         [SerializeField] private SpriteRenderer _border;
         [SerializeField] private SpriteRenderer _letter;
         [SerializeField] private CoinClickDetector _clickDetector;
-
+        
         #endregion
 
         #region Properties

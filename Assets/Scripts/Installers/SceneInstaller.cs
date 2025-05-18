@@ -2,6 +2,7 @@ using Game.ActionBar;
 using Game.Coins;
 using Game.StateMachine;
 using Game.StateMachine.States;
+using Game.UI;
 using UnityEngine;
 using Utility;
 using Zenject;
@@ -12,11 +13,18 @@ namespace Installers
     {
         [SerializeField] private CoinSpawner _coinSpawner;
         [SerializeField] private ActionBar _actionBar;
+        [SerializeField] private WinScreen _winScreen;
+        [SerializeField] private GameOverScreen _gameOverScreen;
+        
         
         #region Public methods
 
         public override void InstallBindings()
         {
+            // Screens
+            Container.Bind<GameOverScreen>().FromInstance(_gameOverScreen).AsSingle().NonLazy();
+            Container.Bind<WinScreen>().FromInstance(_winScreen).AsSingle().NonLazy();
+            
             // Action bar
             Container.Bind<ActionBar>().FromInstance(_actionBar).AsSingle().NonLazy();
             Container.Bind<ActionBarService>().FromNew().AsSingle().NonLazy();

@@ -116,6 +116,7 @@ MonoBehaviour:
   _border: {fileID: 492936000430729338}
   _letter: {fileID: 8679778007386511291}
   _clickDetector: {fileID: 2881756044366717102}
+  _particleSystem: {fileID: 0}
 --- !u!114 &2881756044366717102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e941f879e249f7a81ba4c2b907f38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coin: {fileID: 161612922025372781}
 --- !u!1 &7290929165737876747
 GameObject:
   m_ObjectHideFlags: 0

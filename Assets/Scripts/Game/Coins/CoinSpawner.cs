@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ModestTree.Util;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -30,7 +29,7 @@ namespace Game.Coins
         public bool IsSpawning => _isSpawning;
 
         #endregion
-        public event Action OnSpawningEnded; 
+        public event Action OnSpawningEnded;
 
         #region Setup/Teardown
 
@@ -87,17 +86,6 @@ namespace Game.Coins
         private IEnumerator SpawningCycle()
         {
             _isSpawning = true;
-
-            /*foreach (CoinBlueprint blueprint in _spawnQueue)
-            {
-                float xShift = Random.Range(-transform.localScale.x, transform.localScale.x) / 2;
-                float yShift = Random.Range(-transform.localScale.y, transform.localScale.y) / 2;
-
-                _coinFactory.SpawnCoin(transform.position + new Vector3(xShift, yShift, 0f),
-                    blueprint.baseShape, blueprint.color, blueprint.letter);
-
-                yield return new WaitForSeconds(1 / _coinsPerSecond);
-            }*/
 
             while (_spawnQueue.Count > 0)
             {

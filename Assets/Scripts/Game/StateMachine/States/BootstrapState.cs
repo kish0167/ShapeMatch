@@ -4,15 +4,9 @@ namespace Game.StateMachine.States
     {
         #region Public methods
 
-        public override void Enter()
-        {
-            
-        }
+        public override void Enter() { }
 
-        public override void Exit()
-        {
-            
-        }
+        public override void Exit() { }
 
         #endregion
     }
